@@ -2,19 +2,16 @@
 
 import os
 import polling
-from git import create_events_poller
+import git
 
 user = os.environ['GITHUB_USER']
 access_token = os.environ['GITHUB_ACCESS_TOKEN']
+check_for_new_user_events = git.create_events_poller(user, access_token)
 
-check_for_new_user_events = create_events_poller(user, access_token)
+git.get_user_contrib_data(user)
 
-print('before polling')
-
-polling.poll(
-  lambda: check_for_new_user_events(),
-  step=60,
-  poll_forever=True
-)
-
-print('after polling finished')
+# polling.poll(
+#   lambda: check_for_new_user_events(),
+#   step=60,
+#   poll_forever=True
+# )
