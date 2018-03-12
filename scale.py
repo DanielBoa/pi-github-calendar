@@ -11,11 +11,3 @@ def linear_scale(domain, range):
     return range[0] + ((1.0 / (domainMag / float(input))) * rangeMag)
 
   return scale
-
-domain = [0, 250]
-range = [0, 1]
-scale = linear_scale(domain, range)
-
-print(mag(domain))
-print(mag(range))
-print(scale(200))

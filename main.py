@@ -1,18 +1,20 @@
 #!/usr/bin/env python
 
-import sys
-import scrollphathd
+import os
+import polling
+from git import create_events_poller
 
-width = 17
-height = 7
+user = os.environ['GITHUB_USER']
+access_token = os.environ['GITHUB_ACCESS_TOKEN']
 
-while True:
-  try:
-    for x in range(0, width):
-      for y in range(0, height):
-        brightness = round((1.0 / width) * x, 2)
-        scrollphathd.set_pixel(x, y, brightness)
-    scrollphathd.show()
-  except KeyboardInterrupt:
-    scrollphathd.clear()
-    sys.exit(-1)
+check_for_new_user_events = create_events_poller(user, access_token)
+
+print('before polling')
+
+polling.poll(
+  lambda: check_for_new_user_events(),
+  step=60,
+  poll_forever=True
+)
+
+print('after polling finished')
