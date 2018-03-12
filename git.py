@@ -15,9 +15,7 @@ def create_events_poller(user, password):
   headers = { 'If-None-Match': e_tag }
 
   def poller():
-    resource_changed = get_user_events_head(user, password, headers).status_code == 200
-    print(resource_changed)
-    return resource_changed
+    return get_user_events_head(user, password, headers).status_code == 200
 
   return poller
 
