@@ -8,6 +8,6 @@ def linear_scale(domain, range):
   rangeMag = float(mag(range))
 
   def scale(input):
-    return range[0] + ((1.0 / (domainMag / float(input))) * rangeMag)
+    return range[0] + (float(input) * rangeMag) / domainMag
 
   return scale
