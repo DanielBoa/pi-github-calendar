@@ -21,3 +21,5 @@ def loop():
   )
 
   loop()
+
+loop();
