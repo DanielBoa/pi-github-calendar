@@ -14,7 +14,9 @@ def draw_contrib_data(contrib_data):
 
   for x in range(width):
     for y in range(7):
-      contrib_count = weeks_to_draw[x][y]
+      week_to_draw = weeks_to_draw[x]
+      week = week_to_draw + ([0] * (7 - len(week_to_draw)))
+      contrib_count = week[y]
       brightness = brightness_scale(contrib_count)
       sphd.set_pixel(x, y, brightness)
 
