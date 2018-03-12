@@ -27,7 +27,7 @@ def parse_contrib_svg(svg_text):
   root_el = ET.fromstring(svg_text)
   week_g_els = root_el.find('g').findall('g')
   weeks_of_rects_els = [week_g.findall('rect') for week_g in week_g_els]
-  return [[day_el.attrib['data-count'] for day_el in week] for week in weeks_of_rects_els]
+  return [[int(day_el.attrib['data-count']) for day_el in week] for week in weeks_of_rects_els]
 
 # Takes Github username.
 # Returns user contributions data organised as a multidimensional list of weeks/days. 
